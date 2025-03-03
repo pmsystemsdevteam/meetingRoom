@@ -1,0 +1,390 @@
+$bg-dark: #0a0f1c;
+$bg-card: rgb(0, 34, 33);
+$text-primary: #ffffff;
+$text-secondary: #8b95a9;
+$accent-teal: #00b8a5;
+$accent-orange: #ff5733;
+
+
+
+
+.calendar-container {
+    background-color: $bg-card;
+    padding: 24px;
+    color: $text-primary;
+    padding: 50px 100px;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .calendar-head {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        svg{
+            font-size: 30px;
+            cursor: pointer;
+            transform: rotate(180deg);
+        }
+    }
+
+    .mainlogo {
+        width: 20%;
+        padding-bottom: 20px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+.calendar-info {
+    margin-bottom: 24px;
+
+    h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .calendar-day {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        gap: 10px;
+
+        span {
+            font-size: .7em;
+            color: rgb(222, 222, 222);
+
+        }
+
+        .book,
+        .holiday {
+            border-radius: 100%;
+        }
+
+        .book {
+            width: 17px;
+            height: 17px;
+            background-color: $accent-orange;
+        }
+
+        .holiday {
+            width: 5px;
+            height: 5px;
+            background-color: $accent-teal;
+        }
+    }
+}
+
+.calendar-navigation {
+    display: flex;
+    gap: 12px;
+
+    button {
+        background: none;
+        border: none;
+        border-radius: 15px;
+        color: #f2f2f2;
+        background-color: #ff5733;
+        padding: 5px;
+    }
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    gap: 20px;
+}
+
+.booked {
+    background-color: #ff5733; // or any color for booked dates
+    color: white;
+    position: relative;
+}
+
+
+
+.month-card {
+    background-color: rgba($bg-card, 0.5);
+    padding: 16px;
+    text-align: center;
+    border-radius: 12px !important;
+    background-color: rgb(0, 34, 33);
+    ;
+    // background-image: url(https://s3-alpha-sig.figma.com/img/3365/021d/a70d4555ce147b5cabc4c900f7308661?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=jifBz8GtquWg2fCxfxfRafJ-t2o-gqf4lrH5s4J0yci9IuCAy6XhW52C53Zj-2ZN5tVBNCjjFBHqdgX-ZL8U0BU-H63Xhi9tBOn0Gsq553soeidbkAwwf6VZjOKaD0JHoU-CZi-iv7ziZCp4XLFG6LXkS2amScSEpL2GBe6zsZndaE8jLT0qzX3ENpj9JPFiX52QIBrI8rb53MnEzbPonCbEfO-lUdORr-d7L~OQg3DzzyIx2Rz82wkav1tGzC-c3ydm1hXnmFysjLP8ZeZsp9Pkr821UebPTenrjRcpCDcQomlFgD2XDswit~oevjRnvo1a5uIsleyouCrs6uTu4w__);
+    /* Add gradient border using ::after or ::before pseudo-element */
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1.5px;
+        /* Thickness of the border */
+        background: linear-gradient(90deg, #6EBFF439, #72a5b0);
+        /* Orange gradient, adjust colors as needed */
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        pointer-events: none;
+        /* Ensure the gradient doesn’t interfere with interactions */
+    }
+
+    .month-name {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .days-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        font-size: 14px;
+    }
+
+    .day-cell {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s;
+
+
+        &:hover {
+            .booked-modal {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+
+        .booked-modal {
+            position: absolute;
+            left: 0;
+            line-height: 20px;
+            top: 30px;
+            text-align: center;
+            min-width: 280px;
+            width: 200px;
+            min-height: 30px;
+            background-color: white !important;
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            padding: 5px;
+            color: black;
+            z-index: 5;
+
+            .modal-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .time {
+                text-align: center;
+            }
+        }
+
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        &.holiday::after {
+            content: "";
+            position: absolute;
+            background-color: #00b8a5;
+            width: 4px;
+            height: 4px;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+            border-radius: 50%;
+        }
+
+        &.selected {
+            background-color: $text-secondary;
+            color: white;
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .month-grid {
+        grid-template-columns: 300px 300px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .month-grid {
+        grid-template-columns: 300px !important;
+    }
+}
+
+.custom-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.custom-modal {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 11;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50%;
+    outline: none;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 20px 40px;
+        outline: none;
+        border: none;
+        border-bottom: 2px solid rgb(184, 184, 184);
+
+        img {
+            width: 25px;
+            height: 20px;
+        }
+    }
+}
+
+.input-field {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 35px 40px;
+    outline: none;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid rgb(184, 184, 184);
+
+    &::placeholder {
+        font-size: 1.3em;
+        color: rgb(184, 184, 184);
+    }
+
+}
+
+.add-button {
+    outline: none;
+    border: none;
+    width: 100%;
+
+    &::placeholder {
+        font-size: 1.3em;
+        color: rgb(184, 184, 184);
+    }
+
+}
+
+.ant-picker-panel-container {
+    margin-left: 40px !important;
+
+    &::-webkit-scrollbar {
+        display: none !important;
+    }
+}
+
+.modal-options {
+    display: flex;
+    justify-content: space-between;
+    // padding: 5px;
+    border-bottom: 2px solid rgb(184, 184, 184);
+    height: 60px;
+    align-items: center;
+
+    .first-date {
+
+        padding-left: 40px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 1.6px;
+            height: 60px;
+            // top: -30px;
+            right: 0;
+            background-color: rgb(184, 184, 184);
+        }
+    }
+
+    .second-date {
+        padding: 0 40px;
+    }
+
+    .ant-picker {
+        width: 50%;
+        border: none !important;
+        outline: none;
+        height: 55px;
+        position: relative;
+
+        ::placeholder {
+            font-size: 1.3em;
+            color: rgb(184, 184, 184);
+
+        }
+
+        svg {
+            font-size: 1.5em;
+        }
+    }
+}
+
+.time-button {
+    flex: 1;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f8f8f8;
+    outline: none;
+}
+
+.submit-button {
+    margin: 20px auto;
+    width: 50%;
+    padding: 10px;
+    background: rgb(13, 54, 53);
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgb(4, 42, 41);
+    }
+}
+
+:where(.css-dev-only-do-not-override-1v613y0) .ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled) {
+    background-color: rgb(0, 34, 33) !important;
+}

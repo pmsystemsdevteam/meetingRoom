@@ -1,0 +1,122 @@
+// index.scss
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(0, 71, 68);
+  font-family: Arial, Helvetica, sans-serif;
+
+  .login-card {
+    background-color: rgb(0, 34, 33);
+    padding: 3rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    text-align: center;
+    border-radius: 12px;
+    
+    h2 {
+      margin-bottom: 1rem;
+      color: white;
+      font-size: 2em;
+    }
+
+    input,
+    .login-button {
+      height: 50px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      text-align: left;
+
+      label {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: white;
+      }
+
+      input {
+        margin-bottom: 20px;
+        border: none;
+        padding: 10px;
+        border: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        color: white;
+        width: 100%;
+        background: rgb(72, 102, 101);
+        border-radius: 12px;
+
+
+        &::placeholder {
+          font-size: .9em;
+          color: white;
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #773693;
+          box-shadow: 0px 0px 5px rgba(119, 54, 147, 0.5);
+        }
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    }
+
+    .password-group {
+      position: relative;
+
+      .password-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+          flex: 1;
+        }
+
+        .password-toggle {
+          position: absolute;
+          right: 11px;
+          top: 14px;
+          background: transparent;
+          border: none;
+          font-size: 21px;
+          cursor: pointer;
+          color: #ffffff;
+
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background: rgb(13, 54, 53);
+      border-radius: 12px;
+      border: none;
+      color: white;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgb(72, 102, 101);
+      }
+    }
+  }
+}

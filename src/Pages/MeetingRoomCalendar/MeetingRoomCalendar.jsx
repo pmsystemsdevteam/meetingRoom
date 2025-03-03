@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./MeetingRoomCalendar.scss";
 import Modal from "react-modal";
 import {  TimePicker } from 'antd';
-import meetroomuserlogo from "/public/meetroomuserlogo.png"
-import meetroomaddlogo from "/public/meetroomaddlogo.png"
-import mainLogo from "/public/newPMLogo.png"
+import meetroomuserlogo from "/meetroomuserlogo.png"
+import meetroomaddlogo from "/meetroomaddlogo.png"
+import mainLogo from "/newPMLogo.png"
 import axios from "axios"
 import { CiLogout } from "react-icons/ci";
 import dayjs from "dayjs";

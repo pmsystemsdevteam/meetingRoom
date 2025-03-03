@@ -5,6 +5,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
 import { useNavigate } from "react-router";
 import Spinner from "../../Components/Spinner";
 import "./Login.scss";
+import toast from "react-hot-toast";
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -29,7 +30,8 @@ function Login() {
             // localStorage.setItem('melhem_refresh_token', response.data.refresh)
         } catch (error) {
             setisLoading(false)
-            console.log(error);
+            console.log(error.message)
+            toast.error("Something went wrong");
         }
         // Handle login logic here (e.g., API call)
     };

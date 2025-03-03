@@ -20,20 +20,18 @@ function Login() {
     const onSubmit = async (data) => {
         try {
             setisLoading(true)
-            const response = await axios.post('http://10.42.0.218:8000/login/', data, {
+            const response = await axios.post('http://172.20.10.194:8000/login/', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             })
-            localStorage.setItem('meeting_room_access_token', response.data.access)
+            localStorage.setItem('meeting_room_access_token', response.data.token)
             navigate('/meeting-room/calendar')
-            // localStorage.setItem('melhem_refresh_token', response.data.refresh)
         } catch (error) {
             setisLoading(false)
             console.log(error.message)
             toast.error("Something went wrong");
         }
-        // Handle login logic here (e.g., API call)
     };
 
     return (

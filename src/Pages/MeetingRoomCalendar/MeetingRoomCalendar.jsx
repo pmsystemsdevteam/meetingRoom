@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import "./MeetingRoomCalendar.scss";
-import Modal from "react-modal";
-import {  TimePicker } from 'antd';
-import meetroomuserlogo from "/meetroomuserlogo.png"
-import meetroomaddlogo from "/meetroomaddlogo.png"
-import mainLogo from "/newPMLogo.png"
-import axios from "axios"
-import { CiLogout } from "react-icons/ci";
+import { TimePicker } from 'antd';
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
-import Spinner from "../../Components/Spinner";
+import { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
+import { CiLogout } from "react-icons/ci";
+import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
+import api from "../../api";
+import Spinner from "../../Components/Spinner";
+import "./MeetingRoomCalendar.scss";
+import meetroomaddlogo from "/meetroomaddlogo.png";
+import meetroomuserlogo from "/meetroomuserlogo.png";
+import mainLogo from "/newPMLogo.png";
 Modal.setAppElement('#root');
 
 const DAYS = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
@@ -144,7 +144,7 @@ const MeetingRoomCalendar = () => {
 
         // Proceed with booking if no conflict
         try {
-            await axios.post('http://10.42.0.218:8000/events/', {
+            await api.post('/events/', {
                 event_title: eventTitle,
                 description: eventNotes,
                 full_date: selectedDate,
@@ -153,7 +153,8 @@ const MeetingRoomCalendar = () => {
                 company: eventCompany,
             }, {
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem('meeting_room_access_token')}`
                 }
             })
             toast.success("Room Booked Successfully!");
@@ -169,7 +170,7 @@ const MeetingRoomCalendar = () => {
 
     const getEvents = async () => {
         try {
-            const res = await axios.get("http://10.42.0.218:8000/events/", {
+            const res = await api.get("/events/", {
                 headers: {
                     "Content-Type": "application/json"
                 }

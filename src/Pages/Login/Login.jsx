@@ -20,7 +20,7 @@ function Login() {
     const onSubmit = async (data) => {
         try {
             setisLoading(true)
-            const response = await axios.post('http://172.20.10.194:8000/login/', data, {
+            const response = await axios.post('https://api.pmsystems.az/login/', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

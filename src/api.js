@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const BASE_URL = 'http://172.20.10.194:8000/api/v2';
+export const BASE_URL = 'https://api.pmsystems.az/api/v2';
 const api = axios.create({
     baseURL: BASE_URL,
     headers: {

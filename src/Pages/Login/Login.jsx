@@ -40,14 +40,14 @@ function Login() {
                 <h2>Sign In</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
-                        <label>Email</label>
+                        <label>Username</label>
                         <input
                             required
                             type="text"
-                            placeholder="Enter your email"
+                            placeholder="Enter your username"
                             {...register("username",)}
                         />
-                        {errors.email && <p className="error">{errors.email.message}</p>}
+                        {errors.username && <p className="error">{errors.username.message}</p>}
                     </div>
 
                     <div className="form-group password-group">

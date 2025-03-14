@@ -6,11 +6,12 @@ import { CiLogout } from "react-icons/ci";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
-import Spinner from "../../Components/Spinner";
+import Spinner from "../../Components/Spinner/Spinner";
 import "./MeetingRoomCalendar.scss";
 import meetroomaddlogo from "/meetroomaddlogo.png";
 import meetroomuserlogo from "/meetroomuserlogo.png";
 import mainLogo from "/newPMLogo.png";
+import AllMeetingsModal from '../../Components/AllMeetingsModal/AllMeetingsModal';
 Modal.setAppElement('#root');
 
 const DAYS = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
@@ -41,6 +42,7 @@ const MeetingRoomCalendar = () => {
     const [eventEnd, setEventEnd] = useState('')
     const [bookedDays, setBookedDays] = useState([])
     const [isLoading, setisLoading] = useState(false)
+    const [isAllMeetingsModalOpen, setisAllMeetingsModalOpen] = useState(false)
     const navigate = useNavigate()
 
     const handleStartTimeChange = (time) => {
@@ -190,6 +192,7 @@ const MeetingRoomCalendar = () => {
     }
     return (
         <>
+            {isAllMeetingsModalOpen && <AllMeetingsModal getEvents={getEvents} setisAllMeetingsModalOpen={setisAllMeetingsModalOpen} isAllMeetingsModalOpen={isAllMeetingsModalOpen} />}
             <div className="calendar-container">
                 <div className="calendar-head">
                     <div className="mainlogo">
@@ -197,7 +200,10 @@ const MeetingRoomCalendar = () => {
                             <img src={mainLogo} alt="PM Systems Logo" title="PM Systems Logo" />
                         </a>
                     </div>
-                    <CiLogout onClick={handleLogOut} title="Log Out" />
+                    <div className='btns'>
+                        <button onClick={() => setisAllMeetingsModalOpen(true)}>All Meetings</button>
+                        <CiLogout onClick={handleLogOut} title="Log Out" />
+                    </div>
                 </div>
                 <div className="calendar-info">
                     <h1>Meeting Room Calendar {currentDate.getFullYear()}</h1>
@@ -264,6 +270,7 @@ const MeetingRoomCalendar = () => {
                 className="custom-modal"
                 overlayClassName="custom-overlay"
             >
+                <i onClick={() => setisAllMeetingsModalOpen(true)} className='view'>View All Meetings</i>
                 <form onSubmit={(e) => bookMeetingRoom(e)} className="modal-content">
                     <input required type="text" placeholder="Event Title" className="input-field" onChange={(e) => setEventTitle(e.target.value)} />
                     <div className="modal-options">

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Import icons
 import { useNavigate } from "react-router";
-import Spinner from "../../Components/Spinner";
+import Spinner from "../../Components/Spinner/Spinner";
 import "./Login.scss";
 import toast from "react-hot-toast";
 
@@ -20,7 +20,7 @@ function Login() {
     const onSubmit = async (data) => {
         try {
             setisLoading(true)
-            const response = await axios.post('https://api.pmsystems.az/login/', data, {
+            const response = await axios.post('https://api.pmsystems.az/api/auth/login/', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 }

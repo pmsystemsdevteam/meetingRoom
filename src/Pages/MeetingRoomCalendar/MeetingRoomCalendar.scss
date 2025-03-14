@@ -21,10 +21,33 @@ $accent-orange: #ff5733;
         justify-content: space-between;
         width: 100%;
         align-items: center;
-        svg{
-            font-size: 30px;
-            cursor: pointer;
-            transform: rotate(180deg);
+
+        .btns {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+                background-color: #00b8a5;
+                color: #fff;
+                border-radius: 12px;
+                padding: 13px 23px;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all .3s;
+                letter-spacing: 1.3px;
+
+                &:hover {
+                    background-color: #058174;
+                }
+            }
+
+            svg {
+                font-size: 30px;
+                cursor: pointer;
+                transform: rotate(180deg);
+            }
         }
     }
 
@@ -95,7 +118,7 @@ $accent-orange: #ff5733;
 
 .month-grid {
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-columns: 315px 315px 315px 315px;
     gap: 20px;
 }
 
@@ -117,7 +140,7 @@ $accent-orange: #ff5733;
     // background-image: url(https://s3-alpha-sig.figma.com/img/3365/021d/a70d4555ce147b5cabc4c900f7308661?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=jifBz8GtquWg2fCxfxfRafJ-t2o-gqf4lrH5s4J0yci9IuCAy6XhW52C53Zj-2ZN5tVBNCjjFBHqdgX-ZL8U0BU-H63Xhi9tBOn0Gsq553soeidbkAwwf6VZjOKaD0JHoU-CZi-iv7ziZCp4XLFG6LXkS2amScSEpL2GBe6zsZndaE8jLT0qzX3ENpj9JPFiX52QIBrI8rb53MnEzbPonCbEfO-lUdORr-d7L~OQg3DzzyIx2Rz82wkav1tGzC-c3ydm1hXnmFysjLP8ZeZsp9Pkr821UebPTenrjRcpCDcQomlFgD2XDswit~oevjRnvo1a5uIsleyouCrs6uTu4w__);
     /* Add gradient border using ::after or ::before pseudo-element */
     position: relative;
-    
+
     &::before {
         content: '';
         position: absolute;
@@ -251,6 +274,20 @@ $accent-orange: #ff5733;
     width: 50%;
     outline: none;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+
+    .view {
+        font-size: .9em;
+        text-decoration: underline;
+        position: absolute;
+        cursor: pointer;
+        color: rgb(89, 89, 89);
+        top: 20px;
+        right: 20px;
+        &:hover{
+            color: black;
+        }
+    }
 }
 
 .modal-content {
@@ -381,7 +418,7 @@ $accent-orange: #ff5733;
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgb(4, 42, 41);
+        background: rgb(4, 42, 41);
     }
 }
 

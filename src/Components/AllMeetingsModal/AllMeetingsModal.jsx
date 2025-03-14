@@ -5,6 +5,7 @@ import Switch from "react-switch";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs"; // Install with `npm install dayjs`
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import api from "../../api";
 
 dayjs.extend(customParseFormat);
 
@@ -21,7 +22,7 @@ function AllMeetingsModal({ setisAllMeetingsModalOpen, isAllMeetingsModalOpen })
 
     const getAllMeetings = async () => {
         try {
-            const { data } = await axios.get("https://api.pmsystems.az/api/v2/events/", {
+            const { data } = await api.get("/events/", {
                 headers: {
                     "Content-Type": "application/json"
                 }
